@@ -1,0 +1,41 @@
+<h1>Events#new</h1>
+
+<div>
+<%= form_for @event do |form| %>
+   <% if @event.errors.any? %>
+    <div>
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :date %><br>
+    <%= form.text_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
+</div>
