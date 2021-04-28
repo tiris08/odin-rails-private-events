@@ -1,10 +1,7 @@
-<h1>Private Events</h1>
-<% if current_user %>
-  <p>Logged in as <%= current_user.email %> </p>
-  <%= link_to "Create an event", new_event_path %><br/>
-  <%= link_to "Log Out", session_path("current"), method: :delete %>
-  <%= render "events/index" %>
-  <% else%>
-<%= link_to "Sign Up", new_user_path %><br>
-<%= link_to "Log In", new_session_path %>
-<%end%>
+<h1> <%= @user.name %></h1>
+
+  <p>Logged in as <%= @user.email %> </p>
+  <p>Your events:</p>
+ <% @user.events.each do |e| %>
+ <%= link_to "#{e.name}", event_path(e) %><br>
+ <% end %>

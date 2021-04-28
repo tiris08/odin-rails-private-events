@@ -1,0 +1,5 @@
+<h1>Events#index</h1>
+<% @events.each do |event| %>
+<p><strong><%= link_to "#{event.name}", event_path(event) %></strong>| You can ask for details here -
+<%= event.creator.email %></p>
+<% end %>
