@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event = current_user.created_events.build(event_params)
     if @event.save
       redirect_to @event, notice: "Event created!"
     else
@@ -19,6 +19,18 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+  end
+
+  def attend
+    @event = Event.find(params[:id])
+    @event.attendees << current_user
+    redirect_to @event, notice: "Event attended!"
+  end
+
+  def unattend
+    @event = Event.find(params[:id])
+    @event.event_attendances.find_by(attendee_id: current_user.id).destroy
+    redirect_to @event, notice: "Event unattended!"
   end
 
   private

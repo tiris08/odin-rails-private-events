@@ -5,4 +5,11 @@
 <p>Location: <%= @event.location %> </p>
 <br>
 <p>Creator: <%= @event.creator.name%> </p>
-
+<p> Attendees :</p>
+<% @event.attendees.each do |attendee| %>
+  <p><%= attendee.name %></p>
+<% end %>
+<div>
+<%= button_to "Attend", attend_event_path, method: "POST"  %> <br>
+<%= button_to "UnAttend", unattend_event_path, method: "POST"  %>
+</div>
