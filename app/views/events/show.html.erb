@@ -9,7 +9,12 @@
 <% @event.attendees.each do |attendee| %>
   <p><%= attendee.name %></p>
 <% end %>
+<% if current_user && (@event.date > DateTime.now) %>
 <div>
-<%= button_to "Attend", attend_event_path, method: "POST"  %> <br>
-<%= button_to "UnAttend", unattend_event_path, method: "POST"  %>
-</div>
+  <% if current_user.attended_events.include?(@event) %>
+  <%= button_to "UnAttend", unattend_event_path, method: "POST"  %> <br>
+  <% else %>
+  <%= button_to "Attend", attend_event_path, method: "POST"  %> 
+  <%end%>
+</div> 
+<% end %>
